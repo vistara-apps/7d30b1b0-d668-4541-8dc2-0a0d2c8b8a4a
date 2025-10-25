@@ -2,36 +2,46 @@
 
 import { Sidebar } from '@/components/Sidebar';
 import { Header } from '@/components/Header';
+import { FilterBar } from '@/components/FilterBar';
 import { NFTCard } from '@/components/NFTCard';
 import { CollectionCard } from '@/components/CollectionCard';
-import { FeaturedSection } from '@/components/FeaturedSection';
 import { mockNFTs, mockCollections } from '@/lib/mock-data';
-import { TrendingUp, Sparkles } from 'lucide-react';
+import { Sparkles, TrendingUp } from 'lucide-react';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-bg">
       <Sidebar />
       
-      <div className="ml-64">
+      <div className="lg:pl-64">
         <Header />
         
-        <main className="max-w-7xl mx-auto px-6 py-8">
-          {/* Featured Section */}
-          <FeaturedSection />
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Hero Section */}
+          <div className="mb-8 p-8 rounded-lg gradient-border">
+            <div className="flex items-center gap-2 mb-4">
+              <Sparkles className="text-accent" size={24} />
+              <h2 className="text-3xl font-bold">Discover Amazing NFTs</h2>
+            </div>
+            <p className="text-muted text-lg">
+              Explore curated collections from your Farcaster community on Base
+            </p>
+          </div>
 
-          {/* Trending Collections */}
+          {/* Filters */}
+          <div className="mb-6">
+            <FilterBar />
+          </div>
+
+          {/* Featured Collections */}
           <section className="mb-12">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <TrendingUp className="text-accent" size={24} />
-                <h2 className="text-2xl font-bold">Trending Collections</h2>
-              </div>
-              <button className="text-accent hover:text-accent/80 font-medium transition-colors">
-                View All
-              </button>
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <TrendingUp className="text-accent" />
+                Featured Collections
+              </h2>
+              <button className="text-accent hover:underline">View All</button>
             </div>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mockCollections.map((collection) => (
                 <CollectionCard key={collection.collectionId} collection={collection} />
@@ -39,36 +49,18 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Discover NFTs */}
+          {/* Trending NFTs */}
           <section>
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <Sparkles className="text-accent" size={24} />
-                <h2 className="text-2xl font-bold">Discover NFTs</h2>
-              </div>
-              <div className="flex items-center gap-3">
-                <select className="bg-surface border border-border rounded-lg px-4 py-2 text-fg focus:outline-none focus:border-accent transition-colors">
-                  <option>Recently Added</option>
-                  <option>Most Liked</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                </select>
-              </div>
+              <h2 className="text-2xl font-bold">Trending NFTs</h2>
+              <button className="text-accent hover:underline">View All</button>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {mockNFTs.map((nft) => (
                 <NFTCard key={`${nft.contractAddress}-${nft.tokenId}`} nft={nft} />
               ))}
             </div>
           </section>
-
-          {/* Load More */}
-          <div className="mt-12 text-center">
-            <button className="bg-surface hover:bg-accent border border-border hover:border-accent text-fg hover:text-white px-8 py-3 rounded-lg font-medium transition-all">
-              Load More NFTs
-            </button>
-          </div>
         </main>
       </div>
     </div>
