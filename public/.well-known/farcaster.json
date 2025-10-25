@@ -7,10 +7,10 @@
   "frame": {
     "version": "next",
     "name": "NFT Socializer",
-    "homeUrl": "https://nftsocializer.farcaster.xyz",
+    "homeUrl": "https://app-2c8b8a4a-kptb.vercel.app",
     "iconUrl": "https://nftsocializer.farcaster.xyz/icon.png",
     "splashImageUrl": "https://nftsocializer.farcaster.xyz/splash.png",
     "splashBackgroundColor": "#1A1A2E",
-    "webhookUrl": "https://nftsocializer.farcaster.xyz/api/farcaster-webhook"
+    "webhookUrl": "https://app-2c8b8a4a-kptb.vercel.app/api/webhook"
   }
 }
