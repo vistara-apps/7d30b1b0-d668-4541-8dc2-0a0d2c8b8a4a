@@ -1,0 +1,14 @@
+{
+  "name": "NFT Socializer",
+  "description": "NFT Socializer is a Base Mini App built with Zara.",
+  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=OG",
+  "external_url": "https://7d30b1b0-d668-4541-8dc2-0a0d2c8b8a4a.vercel.app",
+  "properties": {
+    "app": {
+      "name": "NFT Socializer",
+      "description": "NFT Socializer is a Base Mini App built with Zara.",
+      "url": "https://7d30b1b0-d668-4541-8dc2-0a0d2c8b8a4a.vercel.app",
+      "icon": "https://0co.to/images/zara-2.png"
+    }
+  }
+}

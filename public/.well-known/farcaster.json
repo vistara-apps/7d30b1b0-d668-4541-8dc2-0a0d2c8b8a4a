@@ -10,7 +10,7 @@
     "iconUrl": "https://nftsocializer.farcaster.xyz/icon.png",
     "splashImageUrl": "https://nftsocializer.farcaster.xyz/splash.png",
     "splashBackgroundColor": "#1A1A2E",
-    "homeUrl": "https://nftsocializer.farcaster.xyz",
-    "webhookUrl": "https://nftsocializer.farcaster.xyz/api/farcaster-webhook"
+    "homeUrl": "https://app-2c8b8a4a-ut5d.vercel.app",
+    "webhookUrl": "https://app-2c8b8a4a-ut5d.vercel.app/api/webhook"
   }
 }
