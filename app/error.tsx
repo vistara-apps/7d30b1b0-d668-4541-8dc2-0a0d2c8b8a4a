@@ -10,18 +10,16 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="min-h-screen bg-bg flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-surface rounded-lg p-8 border border-[var(--color-border)] text-center">
-        <AlertCircle className="w-16 h-16 text-accent mx-auto mb-4" />
+    <div className="min-h-screen bg-bg flex items-center justify-center p-6">
+      <div className="max-w-md w-full bg-surface rounded-lg border border-border p-8 text-center">
+        <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
         <h2 className="text-2xl font-bold mb-2">Something went wrong!</h2>
-        <p className="text-fg/70 mb-6">
-          {error.message || 'An unexpected error occurred'}
-        </p>
+        <p className="text-muted mb-6">{error.message}</p>
         <button
           onClick={reset}
-          className="w-full py-3 bg-accent hover:bg-accent/90 rounded-lg font-medium transition-colors"
+          className="bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
         >
-          Try again
+          Try Again
         </button>
       </div>
     </div>

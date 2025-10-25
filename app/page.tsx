@@ -1,102 +1,75 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Search, Bell, User, Home, Plus, TrendingUp, Sparkles } from 'lucide-react';
-import { NFTGrid } from './components/NFTGrid';
-import { Sidebar } from './components/Sidebar';
-import { Header } from './components/Header';
-import { CategoryFilter } from './components/CategoryFilter';
+import { Sidebar } from '@/components/Sidebar';
+import { Header } from '@/components/Header';
+import { NFTCard } from '@/components/NFTCard';
+import { CollectionCard } from '@/components/CollectionCard';
+import { FeaturedSection } from '@/components/FeaturedSection';
+import { mockNFTs, mockCollections } from '@/lib/mock-data';
+import { TrendingUp, Sparkles } from 'lucide-react';
 
-export default function HomePage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
-        <div className="animate-shimmer w-32 h-32 rounded-lg" />
-      </div>
-    );
-  }
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-bg text-fg">
-      <div className="flex h-screen overflow-hidden">
-        {/* Sidebar */}
-        <Sidebar />
+    <div className="min-h-screen bg-bg">
+      <Sidebar />
+      
+      <div className="ml-64">
+        <Header />
+        
+        <main className="max-w-7xl mx-auto px-6 py-8">
+          {/* Featured Section */}
+          <FeaturedSection />
 
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto">
-          <Header />
-          
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            {/* Category Filter */}
-            <CategoryFilter />
+          {/* Trending Collections */}
+          <section className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <TrendingUp className="text-accent" size={24} />
+                <h2 className="text-2xl font-bold">Trending Collections</h2>
+              </div>
+              <button className="text-accent hover:text-accent/80 font-medium transition-colors">
+                View All
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {mockCollections.map((collection) => (
+                <CollectionCard key={collection.collectionId} collection={collection} />
+              ))}
+            </div>
+          </section>
 
-            {/* Featured Section */}
-            <section className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Sparkles className="w-6 h-6 text-accent" />
-                  Featured Collections
-                </h2>
-                <button className="text-accent hover:text-secondary transition-colors text-sm font-medium">
-                  View All
-                </button>
+          {/* Discover NFTs */}
+          <section>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <Sparkles className="text-accent" size={24} />
+                <h2 className="text-2xl font-bold">Discover NFTs</h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FeaturedCard
-                  title="Cosmic Creatures"
-                  curator="@cryptoartist"
-                  items={12}
-                  image="/api/placeholder/400/300"
-                />
-                <FeaturedCard
-                  title="Digital Dreams"
-                  curator="@nftcollector"
-                  items={8}
-                  image="/api/placeholder/400/300"
-                />
+              <div className="flex items-center gap-3">
+                <select className="bg-surface border border-border rounded-lg px-4 py-2 text-fg focus:outline-none focus:border-accent transition-colors">
+                  <option>Recently Added</option>
+                  <option>Most Liked</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                </select>
               </div>
-            </section>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {mockNFTs.map((nft) => (
+                <NFTCard key={`${nft.contractAddress}-${nft.tokenId}`} nft={nft} />
+              ))}
+            </div>
+          </section>
 
-            {/* Trending NFTs */}
-            <section>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <TrendingUp className="w-6 h-6 text-accent" />
-                  Trending NFTs
-                </h2>
-              </div>
-              <NFTGrid />
-            </section>
+          {/* Load More */}
+          <div className="mt-12 text-center">
+            <button className="bg-surface hover:bg-accent border border-border hover:border-accent text-fg hover:text-white px-8 py-3 rounded-lg font-medium transition-all">
+              Load More NFTs
+            </button>
           </div>
         </main>
-      </div>
-    </div>
-  );
-}
-
-function FeaturedCard({ title, curator, items, image }: {
-  title: string;
-  curator: string;
-  items: number;
-  image: string;
-}) {
-  return (
-    <div className="group relative overflow-hidden rounded-lg bg-surface border border-[var(--color-border)] hover:border-accent transition-all duration-300 cursor-pointer">
-      <div className="aspect-video bg-gradient-to-br from-accent/20 to-secondary/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-xl font-bold mb-1">{title}</h3>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-secondary">{curator}</span>
-            <span className="text-fg/70">{items} items</span>
-          </div>
-        </div>
       </div>
     </div>
   );
